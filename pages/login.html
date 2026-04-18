@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="../login.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h2>Welcome Back 👋</h2>
+
+    <form onsubmit="return validateLogin()">
+
+        <!-- Email -->
+        <div class="input-group">
+            <input type="text" id="email" placeholder="Email">
+            <small id="emailError"></small>
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password">
+            <span class="eye" onclick="togglePassword()">👁️</span>
+            <small id="passwordError"></small>
+        </div>
+
+        <!-- Remember -->
+        <div class="options">
+            <label>
+                <input type="checkbox" id="remember"> Remember me
+            </label>
+        </div>
+
+        <!-- Button -->
+        <button type="submit">Login</button>
+
+    </form>
+
+    <!-- Register Link -->
+    <p class="register-link">
+        Don't have an account? <a href="register.html">Sign up</a>
+    </p>
+
+</div>
+
+<script src="../JavaScript/login.js"></script>
+
+</body>
+</html>
