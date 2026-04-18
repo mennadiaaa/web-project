@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventoGo Admin</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>EventoGo Admin Panel</h1>
+      <div class="sub">Add, edit, delete, and auto-remove expired events.</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section class="card">
+        <div class="top-row">
+          <h2 id="formTitle">Add Event</h2>
+          <button type="button" id="clearBtn" class="btn btn-secondary clear-btn">
+            Clear
+          </button>
+        </div>
+
+        <form id="eventForm">
+          <input type="hidden" id="eventId" />
+
+          <div class="form-group">
+            <label for="title">Event Name</label>
+            <input type="text" id="title" placeholder="Event Name" required minlength="3" />
+          </div>
+
+          <div class="row-2">
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" required>
+                <option value="">Choose category</option>
+                <option value="Sports">Sports</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Travel">Travel</option>
+                <option value="Food">Food</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Concert">Concert</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" placeholder="Location" required minlength="2" />
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="form-group">
+              <label for="date">Event Date</label>
+              <input type="date" id="date" required />
+            </div>
+
+            <div class="form-group">
+              <label for="time">Event Time</label>
+              <input type="time" id="time" required />
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input type="number" id="price" placeholder="Price" required min="0" />
+            </div>
+
+            <div class="form-group">
+              <label for="image">Event Image</label>
+              <input type="file" id="image" accept="image/*" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Event details..." required minlength="10"></textarea>
+          </div>
+
+          <img id="imagePreview" class="preview" alt="Preview" src="" />
+
+          <div class="small">
+            When editing an event, you can leave the image field empty to keep the old picture.
+          </div>
+
+          <div class="actions actions-spacing">
+            <button type="submit" class="btn btn-primary" id="saveBtn">Save Event</button>
+            <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel Edit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="top-row">
+          <h2>Event List</h2>
+          <div id="eventCount" class="sub"></div>
+        </div>
+
+        <div id="eventList" class="event-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
