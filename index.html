@@ -4,51 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventogo</title>
-    <link rel="stylesheet" href="css\Homapage.css">
-
+    <link rel="stylesheet" href="StyleSheet/Homepage.css">
 </head>
 <body>
-   <header>
-    <h2>Eventogo</h2>
-    <nav>
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-            <a href="#">Events</a>
-            <div class="dropdown-content">
-                <a href="sports.html">Sports</a>
-                <a href="entertainment.html">Entertainment</a>
-                <a href="travel.html">Travel</a>
-            </div>
-        </div>        
-        <a href="pages/login.html">Login</a>
-        <a href="pages/register.html">Register</a>
-        <a href="pages/admin.html">Admin</a>
-    </nav>
+
+    <header>
+        <h2>Eventogo</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Events</a>
+                <div class="dropdown-content">
+                    <a href="sports.html">Sports</a>
+                    <a href="entertainment.html">Entertainment</a>
+                    <a href="travel.html">Travel</a>
+                </div>
+            </div>        
+            <a href="pages/login.html">Login</a>
+            <a href="pages/register.html">Register</a>
+            <a href="pages/admin.html">Admin</a>
+        </nav>
     </header>
 
-      <section class="hero">
+    <section class="hero">
         <h1>Who are we?</h1>
         <div class="description">
-        <p>Step into a world of unforgettable experiences. Whether you're chasing live music, thrilling sports, or your next travel adventure, we make discovering and booking events effortless. With a smooth, interactive interface and personalized options, your next great memory is just a click away.</p>
+            <p>Step into a world of unforgettable experiences. Whether you're chasing live music, thrilling sports, or your next travel adventure, we make discovering and booking events effortless.</p>
         </div>
-      </section>
+    </section>
 
-       <section class="section">
-            <h1>What are you up to?</h1>
-            <div class="sports">
+    <section class="section">
+        <h1>What are you up to?</h1>
+        <div class="category-container">
+            <div class="category-card sports">
                 <a href="sports.html"><h3>Sports</h3></a>
             </div>
-             <div class="entertainment">
+            <div class="category-card entertainment">
                 <a href="entertainment.html"><h3>Entertainment</h3></a>
             </div> 
-            
-            <div class="travel">
+            <div class="category-card travel">
                 <a href="travel.html"><h3>Travel</h3></a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
-            <p>© 2026 EventoGo. All rights reserved.</p>
-        </footer>
+    <footer>
+        <p>© 2026 EventoGo. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
