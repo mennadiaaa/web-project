@@ -1,5 +1,5 @@
 
-
+// Show / Hide Password
 function togglePassword(){
     let pass = document.getElementById("password");
 
@@ -10,8 +10,7 @@ function togglePassword(){
     }
 }
 
-
-
+// Validation
 function validateLogin(){
 
     let email = document.getElementById("email").value.trim();
@@ -28,13 +27,11 @@ function validateLogin(){
 
     let valid = true;
 
-    
     if(!email.match(pattern)){
         emailError.innerText = "Invalid email format";
         valid = false;
     }
 
-    
     if(password.length < 6){
         passwordError.innerText = "Password must be at least 6 characters";
         valid = false;
@@ -44,7 +41,7 @@ function validateLogin(){
         return false;
     }
 
-  
+    // Remember me
     if(remember){
         localStorage.setItem("savedEmail", email);
     } else {
@@ -53,13 +50,12 @@ function validateLogin(){
 
     alert("Login Successful 🎉");
 
-    
     window.location.href = "events.html";
 
     return false;
 }
 
-
+// Load saved email
 window.onload = function(){
     let saved = localStorage.getItem("savedEmail");
 
