@@ -3,34 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register - EventoGo</title>
+    <link rel="stylesheet" href="../StyleSheet/Homepage.css"> 
+    <link rel="stylesheet" href="../StyleSheet/register.css">  
 </head>
-<body>
-    <h2>Registration Form</h2>
-    <form id="myForm">
-<label for="First name">First name:</label>
-<input type="text" id="Fname">
-<br>
-<label for="Last name">Last name:</label>
-<input type="text" id="Lname">
-<br>
-<label for="Email">Email</label>
-<input type="email" id="email">
-<br>
-<label for="password">Password</label>
-<input type="password" id="password">
-<br>
-<label for="Confirm password">Confirm Password</label>
-<input type="password" id="confirmPassword">
-<br>
-<label for="Phone number">Phone number</label>
-<input type="text" id="phone">
-<br>
-<button type="submit">Submit</button>
+<body class="auth-page"> <div class="register-card"> <h2>Registration Form</h2>
+        <p class="subtext">Join the EventoGo community today.</p>
 
+        <form id="myForm">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="Fname">First name:</label>
+                    <input type="text" id="Fname" placeholder="First Name">
+                </div>
+                <div class="input-group">
+                    <label for="Lname">Last name:</label>
+                    <input type="text" id="Lname" placeholder="Last Name">
+                </div>
+            </div>
 
-    </form>
-    <p>Already have an account? <a href="login.html">Login here</a></p>
- <script src="../JavaScript/register.js"></script>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email Address">
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone number</label>
+                <input type="text" id="phone" placeholder="Phone Number">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Min. 8 characters">
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Repeat password">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+
+        <p class="footer-text">Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script src="../JavaScript/register.js"></script>
 </body>
 </html>

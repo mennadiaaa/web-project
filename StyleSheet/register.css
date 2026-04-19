@@ -1,0 +1,115 @@
+
+@import url('Homepage.css');
+
+.auth-page {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-card {
+    background: #ffffff; 
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: var(--radius-main);
+    box-shadow: var(--shadow-hover);
+}
+
+.register-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--primary-black);
+}
+
+.subtext {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-black);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+}
+
+
+.btn-submit {
+    width: 100%;
+    background: var(--primary-black);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer-text a {
+    color: var(--primary-black);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+@media (max-width: 500px) {
+    .input-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .register-card {
+        padding: 30px 20px;
+    }
+}
