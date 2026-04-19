@@ -94,6 +94,19 @@ h1 {
   transform: translateY(-2px);
   box-shadow: 0 16px 28px rgba(37, 99, 235, 0.28);
 }
+.button-container{
+   display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  color: white;
+  background: var(--btn-gradient);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
 
 @media (max-width: 700px) {
   body {
