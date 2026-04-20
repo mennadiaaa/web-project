@@ -72,24 +72,21 @@ h1 {
   margin-bottom: 14px;
 }
 
-.back-btn {
-  display: block;
-  width: fit-content;
-  margin: 0 auto 18px;
-  padding: 14px 28px;
+.book-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 22px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
   color: white;
-  background: var(--btn-gradient);
+  background: linear-gradient(135deg, #22c55e, #2563eb);
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  border: none;
-  cursor: pointer;
 }
 
-.back-btn:hover {
-  background: var(--btn-gradient-hover);
+.book-btn:hover {
+  background: linear-gradient(135deg, #16a34a, #1d4ed8);
   transform: translateY(-2px);
   box-shadow: 0 16px 28px rgba(37, 99, 235, 0.28);
 }
