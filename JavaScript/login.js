@@ -50,7 +50,8 @@ function validateLogin(){
 
     alert("Login Successful 🎉");
 
-    window.location.href = "events.html";
+    
+    window.location.href = "../index.html";
 
     return false;
 }
