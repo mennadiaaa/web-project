@@ -80,13 +80,37 @@ h1 {
   text-decoration: none;
   font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, #22c55e, #2563eb);
+  background: var(--btn-gradient);
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .book-btn:hover {
-  background: linear-gradient(135deg, #16a34a, #1d4ed8);
+  background: var(--btn-gradient-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(37, 99, 235, 0.28);
+}
+
+.back-btn {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 0;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  background: var(--btn-gradient);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: var(--btn-gradient-hover);
   transform: translateY(-2px);
   box-shadow: 0 16px 28px rgba(37, 99, 235, 0.28);
 }
