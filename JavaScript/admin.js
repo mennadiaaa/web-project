@@ -1,10 +1,14 @@
-const STORAGE_KEY = "eventoGoEvents";
+//deleted storage key constant as we are now using the backend instead of localStorage
+
+const API="http://localhost:3000/api/admin/events";
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80";
 
 const form = document.getElementById("eventForm");
 const formTitle = document.getElementById("formTitle");
 const eventIdInput = document.getElementById("eventId");
+
+
 const titleInput = document.getElementById("title");
 const categoryInput = document.getElementById("category");
 const dateInput = document.getElementById("date");
@@ -13,114 +17,210 @@ const locationInput = document.getElementById("location");
 const priceInput = document.getElementById("price");
 const imageInput = document.getElementById("image");
 const descriptionInput = document.getElementById("description");
+
 const imagePreview = document.getElementById("imagePreview");
+
 const eventList = document.getElementById("eventList");
 const eventCount = document.getElementById("eventCount");
+
 const clearBtn = document.getElementById("clearBtn");
 const cancelEditBtn = document.getElementById("cancelEditBtn");
+
 const toast = document.getElementById("toast");
 
-let currentImage = "";
 
 init();
 
-function init() {
-  deleteExpiredEvents();
-  renderEvents();
+async function init() {
+ 
+  await renderEvents();
 
   form.addEventListener("submit", handleSubmit);
   imageInput.addEventListener("change", handleImageChange);
   clearBtn.addEventListener("click", resetForm);
   cancelEditBtn.addEventListener("click", resetForm);
 
-  setInterval(() => {
-    const before = getEvents().length;
-    deleteExpiredEvents();
-    const after = getEvents().length;
+}
+//changed getEvents function to fetch events from the backend instead of localStorage
+async function getEvents(){
 
-    if (before !== after) {
-      renderEvents();
-      showToast("Expired events were deleted automatically.");
+    try{
+
+        const response=
+        await fetch(API);
+
+        return await response.json();
+
     }
-  }, 60000);
-}
+    catch(error){
 
-function getEvents() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-}
+        console.log(error);
 
-function saveEvents(events) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+        return [];
+
+    }
+
 }
 
 function handleImageChange() {
   const file = imageInput.files[0];
+
   if (!file) return;
 
   const reader = new FileReader();
+
   reader.onload = function (e) {
-    currentImage = e.target.result;
-    imagePreview.src = currentImage;
+    imagePreview.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-function handleSubmit(e) {
-  e.preventDefault();
 
-  const id = eventIdInput.value || Date.now().toString();
-  const title = titleInput.value.trim();
-  const category = categoryInput.value;
-  const date = dateInput.value;
-  const time = timeInput.value;
-  const location = locationInput.value.trim();
-  const price = priceInput.value.trim();
-  const description = descriptionInput.value.trim();
+async function handleSubmit(e){
 
-  if (!title || !category || !date || !time || !location || price === "" || !description) {
-    showToast("Please fill in all fields.");
-    return;
-  }
+e.preventDefault();
 
-  const eventDateTime = new Date(`${date}T${time}`);
-  if (eventDateTime <= new Date()) {
-    showToast("Event date and time must be in the future.");
-    return;
-  }
+if(
+!titleInput.value.trim() ||
+!categoryInput.value ||
+!dateInput.value ||
+!timeInput.value ||
+!locationInput.value.trim() ||
+!priceInput.value ||
+!descriptionInput.value.trim()
+){
 
-  let events = getEvents();
-  const oldEvent = events.find((event) => event.id === id);
+showToast("Fill all fields");
 
-  const eventData = {
-    id,
-    title,
-    category,
-    date,
-    time,
-    location,
-    price: Number(price),
-    description,
-    image: currentImage || (oldEvent && oldEvent.image) || DEFAULT_IMAGE,
-  };
+return;
 
-  if (oldEvent) {
-    events = events.map((event) => (event.id === id ? eventData : event));
-    showToast("Event updated successfully.");
-  } else {
-    events.push(eventData);
-    showToast("Event added successfully.");
-  }
-
-  saveEvents(events);
-  deleteExpiredEvents();
-  renderEvents();
-  resetForm();
 }
 
-function renderEvents() {
-  deleteExpiredEvents();
+const eventDateTime=
+new Date(
+`${dateInput.value}T${timeInput.value}`
+);
 
-  const events = getEvents().sort(
+if(
+eventDateTime<=new Date()
+){
+
+showToast(
+"Event must be in future"
+);
+
+return;
+
+}
+
+try{
+
+const formData=new FormData();
+
+formData.append(
+"title",
+titleInput.value
+);
+
+formData.append(
+"category",
+categoryInput.value
+);
+
+formData.append(
+"location",
+locationInput.value
+);
+
+formData.append(
+"date",
+dateInput.value
+);
+
+formData.append(
+"time",
+timeInput.value
+);
+
+formData.append(
+"price",
+priceInput.value
+);
+
+formData.append(
+"description",
+descriptionInput.value
+);
+
+if(imageInput.files[0]){
+
+formData.append(
+"image",
+imageInput.files[0]
+
+);
+
+}
+
+let url=API;
+
+let method="POST";
+
+if(eventIdInput.value){
+
+url+=`/${eventIdInput.value}`;
+
+method="PUT";
+
+}
+console.log(imageInput.files[0]);
+//deleted old fetch call and replaced with new one that sends formData to the backend
+
+const response = await fetch(
+url,
+{
+method,
+body:formData
+}
+);
+
+if(!response.ok){
+  throw new Error("Failed to save");
+}
+
+
+showToast(
+
+method==="POST"
+?
+"Event Added"
+:
+"Event Updated"
+
+);
+
+await renderEvents();
+
+resetForm();
+
+}
+catch(error){
+
+console.error(error);
+
+showToast(
+error.message
+);
+
+}
+
+}
+
+async function renderEvents() {
+
+    const events = await getEvents();
+
+  events.sort(
     (a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`)
   );
 
@@ -135,11 +235,13 @@ function renderEvents() {
     .map(
       (event) => `
       <div class="event-item">
-        <img src="${event.image}" alt="${escapeHtml(event.title)}">
+        <img src="${event.image?`http://localhost:3000${event.image}`:DEFAULT_IMAGE}" alt="${escapeHtml(event.title)}">
         
         <div>
           <div class="badge">${escapeHtml(event.category)}</div>
+
           <h3 class="event-title">${escapeHtml(event.title)}</h3>
+
           <div class="meta">
             <div><strong>Date:</strong> ${formatDate(event.date)} - ${formatTime(event.time)}</div>
             <div><strong>Location:</strong> ${escapeHtml(event.location)}</div>
@@ -149,8 +251,9 @@ function renderEvents() {
         </div>
 
         <div class="event-buttons">
-          <button class="btn btn-secondary" onclick="editEvent('${event.id}')">Edit</button>
-          <button class="btn btn-danger" onclick="deleteEvent('${event.id}')">Delete</button>
+          <button class="btn btn-secondary" onclick="editEvent('${event._id}')">Edit</button>
+
+          <button class="btn btn-danger" onclick="deleteEvent('${event._id}')">Delete</button>
         </div>
       </div>
     `
@@ -158,12 +261,13 @@ function renderEvents() {
     .join("");
 }
 
-function editEvent(id) {
-  const events = getEvents();
-  const event = events.find((item) => item.id === id);
+async function editEvent(id) {
+  const events = await getEvents();
+
+  const event = events.find((item) => item._id === id);
   if (!event) return;
 
-  eventIdInput.value = event.id;
+  eventIdInput.value = event._id;
   titleInput.value = event.title;
   categoryInput.value = event.category;
   dateInput.value = event.date;
@@ -171,40 +275,39 @@ function editEvent(id) {
   locationInput.value = event.location;
   priceInput.value = event.price;
   descriptionInput.value = event.description;
-  currentImage = event.image;
-  imagePreview.src = event.image;
+  imagePreview.src = event.image?"http://localhost:3000"+event.image:"";
 
   formTitle.textContent = "Edit Event";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function deleteEvent(id) {
-  const events = getEvents();
-  const event = events.find((item) => item.id === id);
-  if (!event) return;
+async function deleteEvent(id){
 
-  const ok = confirm(`Delete "${event.title}"?`);
-  if (!ok) return;
+const ok=confirm("Delete this event?");
 
-  const updatedEvents = events.filter((item) => item.id !== id);
-  saveEvents(updatedEvents);
-  renderEvents();
+if(!ok)return;
 
-  if (eventIdInput.value === id) resetForm();
-  showToast("Event deleted successfully.");
+await fetch(
+
+`${API}/${id}`,
+
+{
+method:"DELETE"
 }
 
-function deleteExpiredEvents() {
-  const now = new Date();
-  const events = getEvents();
-  const validEvents = events.filter((event) => new Date(`${event.date}T${event.time}`) > now);
-  saveEvents(validEvents);
+);
+
+showToast("Deleted");
+
+await renderEvents();
+
 }
+
+//deleted deleteExpiredEvents function as we are now using the backend instead of localStorage
 
 function resetForm() {
   form.reset();
   eventIdInput.value = "";
-  currentImage = "";
   imagePreview.src = "";
   formTitle.textContent = "Add Event";
 }
