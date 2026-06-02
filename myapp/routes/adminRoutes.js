@@ -75,11 +75,48 @@ file.originalname)
 
 });
 
-const upload=multer({storage});
+// const upload=multer({storage}); without security filtering
+
+const upload=multer({
+
+storage,
+
+fileFilter:(req,file,cb)=>{
+
+const allowed=[
+
+"image/png",
+"image/jpeg",
+"image/jpg"
+
+];
+
+if(allowed.includes(file.mimetype))
+    {
+
+cb(null,true);
+
+}
+else{
+
+cb(new Error("Only image files allowed"));
+
+}
+
+}
+
+});
 
 router.get("/events",getEvents);
 
 router.post("/events",upload.single("image"),createEvent);
+
+/*router.put(
+"/events/:id",
+upload.single("image"),  without debugging, this was the original code that directly called the updateEvent controller after multer middleware. I changed it to handle errors from multer and only call updateEvent if there are no errors from multer  
+updateEvent
+);
+*/
 
 router.put(
 "/events/:id",
