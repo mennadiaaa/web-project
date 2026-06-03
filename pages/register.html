@@ -4,52 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - EventoGo</title>
-    <link rel="stylesheet" href="../StyleSheet/Homepage.css"> 
-    <link rel="stylesheet" href="../StyleSheet/register.css">  
+
+    <link rel="stylesheet" href="../StyleSheet/Homepage.css">
+    <link rel="stylesheet" href="../StyleSheet/register.css">
 </head>
-<body class="auth-page"> <div class="register-card"> <h2>Registration Form</h2>
-        <p class="subtext">Join the EventoGo community today.</p>
 
-        <form id="myForm">
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="Fname">First name:</label>
-                    <input type="text" id="Fname" placeholder="First Name">
-                </div>
-                <div class="input-group">
-                    <label for="Lname">Last name:</label>
-                    <input type="text" id="Lname" placeholder="Last Name">
-                </div>
+<body class="auth-page">
+
+<div class="register-card">
+
+    <h2>Registration Form</h2>
+    <p class="subtext">Join the EventoGo community today.</p>
+
+    <form id="myForm">
+
+        <div class="input-row">
+            <div class="input-group">
+                <label for="Fname">First name:</label>
+                <input type="text" id="Fname" placeholder="First Name">
             </div>
 
             <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email Address">
+                <label for="Lname">Last name:</label>
+                <input type="text" id="Lname" placeholder="Last Name">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email Address">
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone" placeholder="Phone Number">
+        </div>
+
+        <div class="input-row">
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Min. 8 characters">
             </div>
 
             <div class="input-group">
-                <label for="phone">Phone number</label>
-                <input type="text" id="phone" placeholder="Phone Number">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Repeat password">
             </div>
+        </div>
 
-            <div class="input-row">
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Min. 8 characters">
-                </div>
-                <div class="input-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" placeholder="Repeat password">
-                </div>
-            </div>
+        <button type="submit" class="btn-submit">Submit</button>
 
-            <button type="submit" class="btn-submit">Submit</button>
-        </form>
+    </form>
 
-        <p class="footer-text">Already have an account? <a href="login.html">Login here</a></p>
-    </div>
-    
+    <p class="footer-text">
+        Already have an account? <a href="login.html">Login here</a>
+    </p>
 
-    <script src="../JavaScript/register.js"></script>
+</div>
+
+<script src="../JavaScript/register.js"></script>
+
 </body>
 </html>
