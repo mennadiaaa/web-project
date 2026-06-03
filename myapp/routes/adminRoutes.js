@@ -17,6 +17,7 @@ deleteEvent
 
 }=require("../controllers/adminController");
 
+const validateEvent =require("../middleware/validateEvent");
 
 const uploadDir = path.join(process.cwd(),"uploads");
 
@@ -109,7 +110,7 @@ cb(new Error("Only image files allowed"));
 
 router.get("/events",getEvents);
 
-router.post("/events",upload.single("image"),createEvent);
+router.post("/events",upload.single("image"),validateEvent,createEvent);
 
 /*router.put(
 "/events/:id",
@@ -135,6 +136,7 @@ return res.status(500).json({message:err.message});
 next();
 });
 },
+validateEvent,
 updateEvent
 );
 
