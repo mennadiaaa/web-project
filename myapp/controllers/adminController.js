@@ -35,20 +35,8 @@ message:err.message
 exports.createEvent = async(req,res)=>{
 
 try{
-    if(
-!req.body.title ||
-!req.body.category ||
-!req.body.location ||
-!req.body.date
-){
-
-return res.status(400).json({
-message:"Missing required fields"
-});
-
-}
-
-    console.log("BODY:",req.body);
+  
+console.log("BODY:",req.body);
 
 console.log("FILE:",req.file);
 
@@ -100,19 +88,7 @@ message:err.message
 exports.updateEvent =async(req,res)=>{
 
 try{
-    if(
-!req.body.title ||
-!req.body.category ||
-!req.body.location ||
-!req.body.date
-){
-
-return res.status(400).json({
-message:"Missing required fields"
-});
-
-}
-
+   
     console.log("PARAM ID:",req.params.id);
     console.log("BODY:",req.body);
     console.log("FILE:",req.file);
