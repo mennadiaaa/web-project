@@ -6,6 +6,9 @@ const connectDB=require("./config/db");
 
 const path=require("path");
 
+const errorHandler =
+require("./middleware/errorHandler");
+
 dotenv.config();
 
 
@@ -54,17 +57,4 @@ console.log(
 
 });
 
-app.use((err,req,res,next)=>{
-
-console.log("GLOBAL ERROR:");
-
-console.log(err);
-
-res.status(500).json({
-
-message:err.message,
-stack:err.stack
-
-});
-
-});
+app.use(errorHandler);
