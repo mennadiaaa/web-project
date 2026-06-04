@@ -49,5 +49,5 @@ default:""
 {
 timestamps:true
 });
-const EventModel = mongoose.model("Event", eventSchema);
-module.exports = EventModel;
+module.exports =
+  mongoose.models.Event || mongoose.model("Event", eventSchema);

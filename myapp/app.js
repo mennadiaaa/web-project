@@ -27,10 +27,13 @@ const registerRoutes = require("./routes/RegisterRoutes");
 console.log("REGISTER ROUTES TYPE:", typeof registerRoutes);
 app.use("/api/register", registerRoutes);
 
-app.use(errorHandler);
+const eventRoutes = require("./routes/eventRoutes");
+app.use("/api/events", eventRoutes);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+app.use(errorHandler);
