@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const path = require("path");
 const errorHandler = require("./middleware/errorHandler");
+const session = require("express-session");
 
 dotenv.config();
 
@@ -33,6 +34,12 @@ app.get("/admin", (req, res) => {
         )
     );
 });
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || "eventogo-secret",
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use(
     "/api/admin",

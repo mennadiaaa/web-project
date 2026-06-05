@@ -69,6 +69,8 @@ const loginUser = async (req, res) => {
             });
         }
 
+        req.session.userId = user._id;
+
         res.status(200).json({
             message: "Login successful",
             user: {
