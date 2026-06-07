@@ -11,6 +11,12 @@ async function searchEvents() {
     fetchAndRender(search, category);
 }
 
+function clearSearch() {
+    document.getElementById("searchInput").value = "";
+    document.getElementById("categorySelect").value = "";
+    fetchAndRender();
+}
+
 async function fetchAndRender(search = "", category = "") {
     const container = document.getElementById("eventsContainer");
     const title = document.getElementById("eventsTitle");
@@ -50,7 +56,12 @@ function render(events) {
     const container = document.getElementById("eventsContainer");
 
     if (!events.length) {
-        container.innerHTML = "<p class='no-results'>No events found.</p>";
+        container.innerHTML = `
+            <div class="no-results-wrap">
+                <p class="no-results">😕 No events found matching your search.</p>
+                <p class="no-results-sub">Try different keywords or <span onclick="clearSearch()" class="clear-link">clear the search</span> to see all events.</p>
+            </div>
+        `;
         return;
     }
 
