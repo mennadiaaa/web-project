@@ -86,7 +86,11 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
         alert("Login Successful 🎉");
 
-        window.location.href = "../index.html";
+       if (data.user.role === "admin") {
+    window.location.href = "../pages/admin.html";
+} else {
+    window.location.href = "../index.html";
+}
 
     } catch (error) {
         console.log("Login error:", error);
