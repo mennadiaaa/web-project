@@ -43,11 +43,18 @@ minlength:10
 image:{
 type:String,
 default:""
+},
+
+organizer:{
+type:mongoose.Schema.Types.ObjectId,
+ref:"User",
+default:null
 }
 
 },
 {
 timestamps:true
 });
+
 module.exports =
   mongoose.models.Event || mongoose.model("Event", eventSchema);

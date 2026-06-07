@@ -65,6 +65,8 @@ app.use(
     require("./routes/bookingRoutes")
 );
 
+app.use("/api/organizer", require("./routes/organizerRoutes"));
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;

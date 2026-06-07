@@ -86,8 +86,10 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
         alert("Login Successful 🎉");
 
-       if (data.user.role === "admin") {
+if (data.user.role === "admin") {
     window.location.href = "../pages/admin.html";
+} else if (data.user.role === "organizer") {
+    window.location.href = "../pages/organizer.html";
 } else {
     window.location.href = "../index.html";
 }
