@@ -56,6 +56,11 @@ app.use(
     require("./routes/authRoutes")
 );
 
+app.use(
+    "/api/events",
+    require("./routes/eventRoutes")
+);
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
