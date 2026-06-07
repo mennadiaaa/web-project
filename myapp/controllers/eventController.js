@@ -1,4 +1,4 @@
-const EventModel = require("../models/EventModel");
+const EventModel = require("../models/eventModel");
 
 // PUBLIC: get events with search + filter
 exports.getPublicEvents = async (req, res) => {
@@ -8,12 +8,10 @@ exports.getPublicEvents = async (req, res) => {
 
     const filter = {};
 
-    // filter by category
     if (category) {
       filter.category = category;
     }
 
-    // search by title or location
     if (search) {
       filter.$or = [
         { title: { $regex: search, $options: "i" } },

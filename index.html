@@ -19,12 +19,10 @@
                     <a href="pages/entertainment.html">Entertainment</a>
                     <a href="pages/travel.html">Travel</a>
                 </div>
-            </div>        
+            </div>
             <a href="pages/login.html">Login</a>
             <a href="pages/register.html">Register</a>
-           
-            <input type="text" id="searchInput" placeholder="Search events..." />
-    <button onclick="searchEvents()">Search</button>
+            <a href="pages/admin.html">Admin</a>
         </nav>
     </header>
 
@@ -32,6 +30,19 @@
         <h1>Who are we?</h1>
         <div class="description">
             <p>Step into a world of unforgettable experiences. Whether you're chasing live music, thrilling sports, or your next travel adventure, we make discovering and booking events effortless.</p>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search events by name or location..." />
+            <select id="categorySelect">
+                <option value="">All Categories</option>
+                <option value="Sports">Sports</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Travel">Travel</option>
+            </select>
+            <button onclick="searchEvents()">Search</button>
         </div>
     </section>
 
@@ -43,7 +54,7 @@
             </div>
             <div class="category-card entertainment">
                 <a href="pages/entertainment.html"><h3>Entertainment</h3></a>
-            </div> 
+            </div>
             <div class="category-card travel">
                 <a href="pages/travel.html"><h3>Travel</h3></a>
             </div>
@@ -51,14 +62,14 @@
     </section>
 
     <section class="section">
-  <h1>Featured Events</h1>
-  <div id="eventsContainer"></div>
-</section>
+        <h1 id="eventsTitle">Featured Events</h1>
+        <div id="eventsContainer"></div>
+    </section>
 
-    <script src="/JavaScript/main.js"></script>
     <footer>
         <p>© 2026 EventoGo. All rights reserved.</p>
     </footer>
 
+    <script src="/JavaScript/main.js"></script>
 </body>
 </html>
