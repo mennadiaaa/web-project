@@ -121,3 +121,13 @@ function escapeHtml(text) {
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#39;");
 }
+
+// Hide admin link if not logged in as admin
+const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+const adminLink = document.querySelector('a[href="pages/admin.html"]');
+
+if (adminLink) {
+    if (!loggedUser || loggedUser.role !== "admin") {
+        adminLink.style.display = "none";
+    }
+}

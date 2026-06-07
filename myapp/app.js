@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const path = require("path");
 const errorHandler = require("./middleware/errorHandler");
+const isAuthenticated = require("./middleware/isAuthenticated");
+const isAdmin = require("./middleware/isAdmin");
 const session = require("express-session");
 
 dotenv.config();
@@ -17,6 +19,12 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+app.use(session({
+    secret: process.env.SESSION_SECRET || "eventogo-secret",
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use(
     "/uploads",
     express.static(
@@ -26,7 +34,7 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "../")));
 
-app.get("/admin", (req, res) => {
+app.get("/admin", isAuthenticated, isAdmin, (req, res) => {
     res.sendFile(
         path.join(
             __dirname,
@@ -34,12 +42,6 @@ app.get("/admin", (req, res) => {
         )
     );
 });
-
-app.use(session({
-    secret: process.env.SESSION_SECRET || "eventogo-secret",
-    resave: false,
-    saveUninitialized: false
-}));
 
 app.use(
     "/api/admin",
@@ -60,6 +62,7 @@ app.use(
     "/api/events",
     require("./routes/eventRoutes")
 );
+
 app.use(
     "/api/bookings",
     require("./routes/bookingRoutes")
