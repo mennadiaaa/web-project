@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Event Details</title>
+
+    <link rel="stylesheet" href="../StyleSheet/details.css" />
+</head>
+<body>
+
+    <div id="toast" class="top-toast"></div>
+
+    <header class="details-header">
+        <h1>Event Details</h1>
+        <p>Discover the details, book your ticket, and get your QR code by email.</p>
+    </header>
+
+    <main>
+        <div id="detailsContainer" class="details-container">
+            <p class="loading">Loading event details...</p>
+        </div>
+
+        <div id="bookingContainer" class="booking-container"></div>
+    </main>
+
+    <a href="javascript:history.back()" class="back-btn">Back</a>
+
+    <script src="../JavaScript/details.js"></script>
+</body>
+</html>

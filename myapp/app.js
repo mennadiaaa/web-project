@@ -60,6 +60,10 @@ app.use(
     "/api/events",
     require("./routes/eventRoutes")
 );
+app.use(
+    "/api/bookings",
+    require("./routes/bookingRoutes")
+);
 
 app.use(errorHandler);
 

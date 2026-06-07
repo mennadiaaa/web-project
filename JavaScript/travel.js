@@ -32,7 +32,7 @@ function renderCard(event) {
 
       <p>${shortenText(event.description, 80)}</p>
 
-      <a href="event-details.html?id=${event._id}" class="book-btn">
+      <a href="details.html?id=${event._id}" class="book-btn">
         View Details
       </a>
 
