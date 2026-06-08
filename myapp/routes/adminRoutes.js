@@ -136,7 +136,7 @@ deleteEvent
 );
 
 // USER MANAGEMENT ROUTES
-const User = require("../models/User");
+const User = require("../models/user");
 
 router.get("/users", async (req, res) => {
     try {
