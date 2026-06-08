@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/api/events?category=Travel";
+const API = "https://web-project-production-5d78.up.railway.app/api/events?category=Travel";
 
 const container = document.getElementById("eventsContainer");
 
@@ -20,7 +20,7 @@ function renderCard(event) {
     <div class="event-card">
 
       <img 
-        src="${event.image ? `http://localhost:3000${event.image}` : 'https://via.placeholder.com/400'}" 
+        src="${event.image ? `https://web-project-production-5d78.up.railway.app${event.image}` : 'https://via.placeholder.com/400'}" 
         alt="${event.title}"
       >
 

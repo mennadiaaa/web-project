@@ -1,7 +1,7 @@
 //deleted storage key constant as we are now using the backend instead of localStorage
 
-const API="http://localhost:3000/api/admin/events";
-const USERS_API="http://localhost:3000/api/admin/users";
+const API="https://web-project-production-5d78.up.railway.app/api/admin/events";
+const USERS_API="https://web-project-production-5d78.up.railway.app/api/admin/users";
 
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80";
@@ -238,7 +238,7 @@ async function renderEvents() {
     .map(
       (event) => `
       <div class="event-item">
-        <img src="${event.image?`http://localhost:3000${event.image}`:DEFAULT_IMAGE}" alt="${escapeHtml(event.title)}">
+        <img src="${event.image?`https://web-project-production-5d78.up.railway.app${event.image}`:DEFAULT_IMAGE}" alt="${escapeHtml(event.title)}">
         
         <div>
           <div class="badge">${escapeHtml(event.category)}</div>
@@ -277,7 +277,7 @@ async function editEvent(id) {
   locationInput.value = event.location;
   priceInput.value = event.price;
   descriptionInput.value = event.description;
-  imagePreview.src = event.image?"http://localhost:3000"+event.image:"";
+  imagePreview.src = event.image?"https://web-project-production-5d78.up.railway.app"+event.image:"";
 
   formTitle.textContent = "Edit Event";
   window.scrollTo({ top: 0, behavior: "smooth" });
