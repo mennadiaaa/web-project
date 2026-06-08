@@ -21,7 +21,6 @@ const validateEvent =require("../middleware/validateEvent");
 
 const uploadDir = path.join(process.cwd(),"uploads");
 
-//deleted old multer setup and replaced with new one that uses diskStorage to save files to uploads directory
 if(!fs.existsSync(uploadDir)){
 
 fs.mkdirSync(uploadDir,{recursive:true});
@@ -76,8 +75,6 @@ file.originalname)
 
 });
 
-// const upload=multer({storage}); without security filtering
-
 const upload=multer({
 
 storage,
@@ -92,8 +89,7 @@ const allowed=[
 
 ];
 
-if(allowed.includes(file.mimetype))
-    {
+if(allowed.includes(file.mimetype)){
 
 cb(null,true);
 
@@ -108,16 +104,10 @@ cb(new Error("Only image files allowed"));
 
 });
 
+// EVENT ROUTES
 router.get("/events",getEvents);
 
 router.post("/events",upload.single("image"),validateEvent,createEvent);
-
-/*router.put(
-"/events/:id",
-upload.single("image"),  without debugging, this was the original code that directly called the updateEvent controller after multer middleware. I changed it to handle errors from multer and only call updateEvent if there are no errors from multer  
-updateEvent
-);
-*/
 
 router.put(
 "/events/:id",
@@ -144,5 +134,26 @@ router.delete(
 "/events/:id",
 deleteEvent
 );
+
+// USER MANAGEMENT ROUTES
+const User = require("../models/User");
+
+router.get("/users", async (req, res) => {
+    try {
+        const users = await User.find({}, { password: 0 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.delete("/users/:id", async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.json({ message: "User deleted" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 module.exports=router;

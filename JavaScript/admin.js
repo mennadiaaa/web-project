@@ -1,13 +1,14 @@
 //deleted storage key constant as we are now using the backend instead of localStorage
 
 const API="http://localhost:3000/api/admin/events";
+const USERS_API="http://localhost:3000/api/admin/users";
+
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80";
 
 const form = document.getElementById("eventForm");
 const formTitle = document.getElementById("formTitle");
 const eventIdInput = document.getElementById("eventId");
-
 
 const titleInput = document.getElementById("title");
 const categoryInput = document.getElementById("category");
@@ -32,8 +33,9 @@ const toast = document.getElementById("toast");
 init();
 
 async function init() {
- 
+
   await renderEvents();
+  await loadUsers();
 
   form.addEventListener("submit", handleSubmit);
   imageInput.addEventListener("change", handleImageChange);
@@ -41,6 +43,7 @@ async function init() {
   cancelEditBtn.addEventListener("click", resetForm);
 
 }
+
 //changed getEvents function to fetch events from the backend instead of localStorage
 async function getEvents(){
 
@@ -173,9 +176,10 @@ url+=`/${eventIdInput.value}`;
 method="PUT";
 
 }
-console.log(imageInput.files[0]);
-//deleted old fetch call and replaced with new one that sends formData to the backend
 
+console.log(imageInput.files[0]);
+
+//deleted old fetch call and replaced with new one that sends formData to the backend
 const response = await fetch(
 url,
 {
@@ -187,7 +191,6 @@ body:formData
 if(!response.ok){
   throw new Error("Failed to save");
 }
-
 
 showToast(
 
@@ -252,7 +255,6 @@ async function renderEvents() {
 
         <div class="event-buttons">
           <button class="btn btn-secondary" onclick="editEvent('${event._id}')">Edit</button>
-
           <button class="btn btn-danger" onclick="deleteEvent('${event._id}')">Delete</button>
         </div>
       </div>
@@ -343,4 +345,49 @@ function escapeHtml(text) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+// ── USER MANAGEMENT ──────────────────────────────────────
+
+async function loadUsers() {
+    try {
+        const res = await fetch(USERS_API);
+        const users = await res.json();
+
+        const userCount = document.getElementById("userCount");
+        const userList = document.getElementById("userList");
+
+        userCount.textContent = `${users.length} user${users.length !== 1 ? "s" : ""}`;
+
+        if (!users.length) {
+            userList.innerHTML = `<div class="empty">No users found.</div>`;
+            return;
+        }
+
+        userList.innerHTML = users.map(user => `
+            <div class="event-item">
+                <div style="flex:1">
+                    <h3 class="event-title">${escapeHtml(user.name)}</h3>
+                    <div class="meta">
+                        <div><strong>Email:</strong> ${escapeHtml(user.email)}</div>
+                        <div><strong>Role:</strong> <span class="badge">${escapeHtml(user.role)}</span></div>
+                    </div>
+                </div>
+                <div class="event-buttons">
+                    <button class="btn btn-danger" onclick="deleteUser('${user._id}')">Delete</button>
+                </div>
+            </div>
+        `).join("");
+
+    } catch (err) {
+        console.error("Failed to load users:", err);
+    }
+}
+
+async function deleteUser(id) {
+    const ok = confirm("Delete this user?");
+    if (!ok) return;
+    await fetch(`${USERS_API}/${id}`, { method: "DELETE" });
+    showToast("User deleted");
+    await loadUsers();
 }
