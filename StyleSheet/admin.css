@@ -1,5 +1,3 @@
-
-
 * {
   margin: 0;
   padding: 0;
@@ -168,6 +166,7 @@ textarea {
   border-radius: 999px;
   font-size: 0.95rem;
 }
+
 .btn-primary {
   background: linear-gradient(135deg, #22c55e, #2563eb);
   color: white;
@@ -190,8 +189,6 @@ textarea {
 .btn:hover {
   transform: translateY(-1px);
 }
-
-
 
 .btn-danger {
   background: linear-gradient(135deg, #e85b5b, #ca4242);
@@ -388,5 +385,33 @@ textarea {
 
   .actions {
     flex-direction: column;
+  }
+}
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin-top: 16px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, #22c55e, #2563eb);
+  color: white;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.18);
+  transition: 0.25s ease;
+}
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #16a34a, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.25);
+}
+
+@media (max-width: 700px) {
+  .home-btn {
+    width: 100%;
   }
 }
