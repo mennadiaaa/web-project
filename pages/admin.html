@@ -6,22 +6,26 @@
   <title>EventoGo Admin</title>
 
   <link rel="stylesheet" href="/StyleSheet/admin.css">
-
 </head>
+
 <body>
+
   <header class="header">
     <div class="container">
       <h1>EventoGo Admin Panel</h1>
       <div class="sub">Add, edit, delete, and auto-remove expired events.</div>
-      <a href="../index.html" class="home-btn">← Back to Home</a>
+
+      <a href="/index.html" class="home-btn">← Back to Home</a>
     </div>
   </header>
 
   <main class="container">
     <div class="grid">
+
       <section class="card">
         <div class="top-row">
           <h2 id="formTitle">Add Event</h2>
+
           <button type="button" id="clearBtn" class="btn btn-secondary clear-btn">
             Clear
           </button>
@@ -43,7 +47,6 @@
                 <option value="Sports">Sports</option>
                 <option value="Entertainment">Entertainment</option>
                 <option value="Travel">Travel</option>
-                
               </select>
             </div>
 
@@ -89,8 +92,13 @@
           </div>
 
           <div class="actions actions-spacing">
-            <button type="submit" class="btn btn-primary" id="saveBtn">Save Event</button>
-            <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel Edit</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn">
+              Save Event
+            </button>
+
+            <button type="button" class="btn btn-secondary" id="cancelEditBtn">
+              Cancel Edit
+            </button>
           </div>
         </form>
       </section>
@@ -103,13 +111,24 @@
 
         <div id="eventList" class="event-list"></div>
       </section>
+
     </div>
+
+    <!-- USER MANAGEMENT SECTION -->
+    <section class="card" style="margin-top: 2rem;">
+      <div class="top-row">
+        <h2>User Management</h2>
+        <div id="userCount" class="sub"></div>
+      </div>
+
+      <div id="userList" class="event-list"></div>
+    </section>
+
   </main>
 
   <div id="toast" class="toast"></div>
 
- 
-<script src="/JavaScript/admin.js"></script>
-<script src="../JavaScript/theme.js"></script>
+  <script src="/JavaScript/admin.js"></script>
+
 </body>
 </html>

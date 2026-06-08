@@ -131,7 +131,6 @@ async function renderEvents() {
         <div class="event-item">
             <img src="${event.image ? `https://web-project-production-5d78.up.railway.app${event.image}` : DEFAULT_IMAGE}" alt="${escapeHtml(event.title)}">
             <div>
-<img src="${event.image || DEFAULT_IMAGE}" alt="${escapeHtml(event.title)}">            <div>
                 <div class="badge">${escapeHtml(event.category)}</div>
                 <h3 class="event-title">${escapeHtml(event.title)}</h3>
                 <div class="meta">
@@ -164,7 +163,6 @@ async function editEvent(id) {
     descriptionInput.value = event.description;
     imagePreview.src = event.image ? "https://web-project-production-5d78.up.railway.app" + event.image : "";
 
-imagePreview.src = event.image || "";
     formTitle.textContent = "Edit Event";
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
