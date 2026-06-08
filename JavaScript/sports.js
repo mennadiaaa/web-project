@@ -20,6 +20,7 @@ function renderCard(event) {
 
       <img 
         src="${event.image ? `https://web-project-production-5d78.up.railway.app${event.image}` : 'https://via.placeholder.com/400'}" 
+src="${event.image || 'https://via.placeholder.com/400'}"
         alt="${event.title}"
       >
 

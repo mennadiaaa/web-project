@@ -56,11 +56,8 @@ price:req.body.price,
 
 description:req.body.description,
 
-image:req.file
-?
-`/uploads/${req.file.filename}`
-:
-""
+image: req.file ? req.file.path : ""
+
 
 });
 
@@ -113,8 +110,7 @@ description:req.body.description
 
 if(req.file){
 
-updatedData.image=
-"/uploads/"+req.file.filename;
+updatedData.image = req.file.path;
 }
 
 console.log("UPDATED DATA:",updatedData);
