@@ -232,7 +232,7 @@ console.log("Booking API:", BOOKING_API);
 
         setTimeout(() => {
             window.location.href = "../index.html";
-        }, 10000);
+        }, 50000);
 
     } catch (error) {
         console.error(error);

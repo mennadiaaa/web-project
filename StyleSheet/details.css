@@ -294,3 +294,89 @@ body {
         font-size: 25px;
     }
 }
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode section,
+body.dark-mode main,
+body.dark-mode .container,
+body.dark-mode .card,
+body.dark-mode .event-card,
+body.dark-mode .form-box,
+body.dark-mode .login-box,
+body.dark-mode .register-box {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode label {
+    color: white;
+}
+
+body.dark-mode a {
+    color: white;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #555;
+}
+
+
+body.dark-mode button {
+    background-color: #ff6b35;
+    color: white;
+}
+body.dark-mode .description-box,
+body.dark-mode .event-description,
+body.dark-mode .details-description,
+body.dark-mode .description-card {
+    color: #121212;
+}
+
+body.dark-mode .description-box p,
+body.dark-mode .event-description p,
+body.dark-mode .details-description p,
+body.dark-mode .description-card p {
+    color: #121212;
+}
+/* Event title stays white */
+body.dark-mode .details-container h1,
+body.dark-mode .details-container .event-title {
+    color: white;
+}
+
+/* Description box text stays black */
+body.dark-mode .details-container .description-box h3,
+body.dark-mode .details-container .description-box p,
+body.dark-mode .details-container .description-card h3,
+body.dark-mode .details-container .description-card p,
+body.dark-mode .details-container .event-description h3,
+body.dark-mode .details-container .event-description p {
+    color: #121212;
+}
+/* Make the whole details page dark */
+body.dark-mode,
+body.dark-mode main,
+body.dark-mode .details-container,
+body.dark-mode .booking-container {
+    background: #121212 !important;
+    background-color: #121212 !important;
+}
+
+/* Back button area */
+body.dark-mode .back-btn {
+    background: #111827;
+    color: white;
+}

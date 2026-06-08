@@ -113,3 +113,46 @@
         padding: 30px 20px;
     }
 }
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode section,
+body.dark-mode main,
+body.dark-mode .container,
+body.dark-mode .card,
+body.dark-mode .event-card,
+body.dark-mode .form-box,
+body.dark-mode .login-box,
+body.dark-mode .register-box {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode label {
+    color: white;
+}
+
+body.dark-mode a {
+    color: white;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark-mode button {
+    background-color: #ff6b35;
+    color: white;
+}

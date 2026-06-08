@@ -415,3 +415,67 @@ textarea {
     width: 100%;
   }
 }
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #16a34a, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.25);
+}
+
+@media (max-width: 700px) {
+  .home-btn {
+    width: 100%;
+  }
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode .header,
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode section,
+body.dark-mode main,
+body.dark-mode .container,
+body.dark-mode .card,
+body.dark-mode .event-item,
+body.dark-mode .empty,
+body.dark-mode .toast {
+  background-color: #1e1e1e;
+  color: white;
+  border-color: #333;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode .event-title,
+body.dark-mode .meta,
+body.dark-mode .meta strong,
+body.dark-mode .sub,
+body.dark-mode .small {
+  color: white;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #aaa;
+}
+
+body.dark-mode button {
+  background-color: #ff6b35;
+  color: white;
+} 
