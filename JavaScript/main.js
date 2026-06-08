@@ -1,35 +1,40 @@
-const API = "http://localhost:3000/api/events";
+const API = "/api/events";
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80";
 
 document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender();
+    handleNavVisibility();
 });
+
+// Show/hide nav links based on role
+function handleNavVisibility() {
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    const adminLink = document.querySelector('a[href="pages/admin.html"]');
+    const organizerLink = document.getElementById("organizerLink");
+
+    if (adminLink) {
+        if (!loggedUser || loggedUser.role !== "admin") {
+            adminLink.style.display = "none";
+        }
+    }
+
+    if (organizerLink) {
+        if (!loggedUser || loggedUser.role !== "organizer") {
+            organizerLink.style.display = "none";
+        }
+    }
+}
 
 async function searchEvents() {
     const search = document.getElementById("searchInput").value.trim();
     const category = document.getElementById("categorySelect").value;
-
-    await fetchAndRender(search, category);
-
-   const eventsTitle = document.getElementById("eventsTitle");
-   const offset = 90;
-
-   window.scrollTo({
-     top: eventsTitle.offsetTop - offset,
-     behavior: "smooth"
-  });
+    fetchAndRender(search, category);
 }
 
 function clearSearch() {
     document.getElementById("searchInput").value = "";
     document.getElementById("categorySelect").value = "";
-
-    fetchAndRender().then(() => {
-        document.getElementById("eventsContainer").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    });
+    fetchAndRender();
 }
 
 async function fetchAndRender(search = "", category = "") {
@@ -84,7 +89,7 @@ function render(events) {
         <div class="event-card">
             <div class="event-card-img-wrap">
                 <img 
-                    src="${event.image ? `http://localhost:3000${event.image}` : DEFAULT_IMAGE}" 
+                    src="${event.image ? event.image.startsWith("http") ? event.image : `/uploads/${event.image.split("/uploads/")[1]}` : DEFAULT_IMAGE}" 
                     alt="${escapeHtml(event.title)}"
                     onerror="this.src='${DEFAULT_IMAGE}'"
                 >
@@ -135,13 +140,4 @@ function escapeHtml(text) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#39;");
-}
-
-const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-const adminLink = document.querySelector('a[href="pages/admin.html"]');
-
-if (adminLink) {
-    if (!loggedUser || loggedUser.role !== "admin") {
-        adminLink.style.display = "none";
-    }
 }

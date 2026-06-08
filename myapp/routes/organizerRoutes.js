@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
 const EventModel = require("../models/eventModel");
+const validateEvent = require("../middleware/validateEvent");
 
 const uploadDir = path.join(process.cwd(), "uploads");
 
@@ -28,7 +28,6 @@ const upload = multer({
     }
 });
 
-// GET only this organizer's events
 router.get("/events", async (req, res) => {
     try {
         const events = await EventModel.find({
@@ -40,8 +39,7 @@ router.get("/events", async (req, res) => {
     }
 });
 
-// POST create new event
-router.post("/events", upload.single("image"), async (req, res) => {
+router.post("/events", upload.single("image"), validateEvent, async (req, res) => {
     try {
         const newEvent = new EventModel({
             title: req.body.title,
@@ -61,8 +59,14 @@ router.post("/events", upload.single("image"), async (req, res) => {
     }
 });
 
-// PUT update event
-router.put("/events/:id", upload.single("image"), async (req, res) => {
+router.put("/events/:id", (req, res, next) => {
+    upload.single("image")(req, res, function (err) {
+        if (err) {
+            return res.status(500).json({ message: err.message });
+        }
+        next();
+    });
+}, validateEvent, async (req, res) => {
     try {
         const updatedData = {
             title: req.body.title,
@@ -79,7 +83,7 @@ router.put("/events/:id", upload.single("image"), async (req, res) => {
         const updatedEvent = await EventModel.findByIdAndUpdate(
             req.params.id,
             updatedData,
-            { new: true }
+            { new: true, runValidators: true }
         );
         res.json(updatedEvent);
     } catch (err) {
@@ -87,7 +91,6 @@ router.put("/events/:id", upload.single("image"), async (req, res) => {
     }
 });
 
-// DELETE event
 router.delete("/events/:id", async (req, res) => {
     try {
         await EventModel.findByIdAndDelete(req.params.id);

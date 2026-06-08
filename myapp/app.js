@@ -5,6 +5,7 @@ const path = require("path");
 const errorHandler = require("./middleware/errorHandler");
 const isAuthenticated = require("./middleware/isAuthenticated");
 const isAdmin = require("./middleware/isAdmin");
+const isOrganizer = require("./middleware/isOrganizer");
 const session = require("express-session");
 
 dotenv.config();
@@ -36,38 +37,21 @@ app.use(express.static(path.join(__dirname, "../")));
 
 app.get("/admin", isAuthenticated, isAdmin, (req, res) => {
     res.sendFile(
-        path.join(
-            __dirname,
-            "../pages/admin.html"
-        )
+        path.join(__dirname, "../pages/admin.html")
     );
 });
 
-app.use(
-    "/api/admin",
-    require("./routes/adminRoutes")
-);
+app.get("/organizer", isAuthenticated, isOrganizer, (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "../pages/organizer.html")
+    );
+});
 
-app.use(
-    "/api/register",
-    require("./routes/RegisterRoutes")
-);
-
-app.use(
-    "/api/auth",
-    require("./routes/authRoutes")
-);
-
-app.use(
-    "/api/events",
-    require("./routes/eventRoutes")
-);
-
-app.use(
-    "/api/bookings",
-    require("./routes/bookingRoutes")
-);
-
+app.use("/api/admin", require("./routes/adminRoutes"));
+app.use("/api/register", require("./routes/RegisterRoutes"));
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/events", require("./routes/eventRoutes"));
+app.use("/api/bookings", require("./routes/bookingRoutes"));
 app.use("/api/organizer", require("./routes/organizerRoutes"));
 
 app.use(errorHandler);
