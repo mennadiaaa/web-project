@@ -639,10 +639,7 @@ body.dark-mode .theme-toggle {
     background: transparent;
     color: white;
 }
-/* Dropdown text stays black in dark mode */
-body.dark-mode .dropdown-content a {
-    color: #121212;
-}
+
 
 body.dark-mode .dropdown-content a:hover {
     color: #e05a2a;
@@ -667,4 +664,18 @@ body.dark-mode .event-card {
 
 body.dark-mode .event-card-footer {
     border-top-color: #333;
+}
+/* Dark mode dropdown in navbar */
+body.dark-mode .dropdown-content {
+    background: #121212;
+    border: 1px solid #333;
+}
+
+body.dark-mode .dropdown-content a {
+    color: white;
+}
+
+body.dark-mode .dropdown-content a:hover {
+    background: #1e1e1e;
+    color: #e05a2a;
 }
