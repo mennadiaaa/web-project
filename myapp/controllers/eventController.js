@@ -1,4 +1,4 @@
-const EventModel = require("../models/eventModel");
+const EventModel = require("../models/EventModel");
 
 // PUBLIC: get events with search + filter
 exports.getPublicEvents = async (req, res) => {

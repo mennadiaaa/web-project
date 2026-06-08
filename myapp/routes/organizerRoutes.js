@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-const EventModel = require("../models/eventModel");
+const EventModel = require("../models/EventModel");
 const validateEvent = require("../middleware/validateEvent");
 
 const uploadDir = path.join(process.cwd(), "uploads");

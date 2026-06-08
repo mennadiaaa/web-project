@@ -1,4 +1,4 @@
-const EventModel = require("../models/eventModel");
+const EventModel = require("../models/EventModel");
 
 exports.getEvents = async (req,res)=>{
 
