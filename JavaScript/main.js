@@ -8,13 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
 async function searchEvents() {
     const search = document.getElementById("searchInput").value.trim();
     const category = document.getElementById("categorySelect").value;
-    fetchAndRender(search, category);
+
+    await fetchAndRender(search, category);
+
+   const eventsTitle = document.getElementById("eventsTitle");
+   const offset = 90;
+
+   window.scrollTo({
+     top: eventsTitle.offsetTop - offset,
+     behavior: "smooth"
+  });
 }
 
 function clearSearch() {
     document.getElementById("searchInput").value = "";
     document.getElementById("categorySelect").value = "";
-    fetchAndRender();
+
+    fetchAndRender().then(() => {
+        document.getElementById("eventsContainer").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
 }
 
 async function fetchAndRender(search = "", category = "") {
@@ -122,7 +137,6 @@ function escapeHtml(text) {
         .replaceAll("'", "&#39;");
 }
 
-// Hide admin link if not logged in as admin
 const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 const adminLink = document.querySelector('a[href="pages/admin.html"]');
 
