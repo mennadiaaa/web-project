@@ -323,7 +323,7 @@ function resolveImage(imagePath) {
         return imagePath;
     }
 
-    return `https://web-project-production-5d78.up.railway.app${imagePath}`;
+    return `http://localhost:3000${imagePath}`;
 }
 
 function formatDate(date) {

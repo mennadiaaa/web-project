@@ -25,7 +25,7 @@ document.getElementById("myForm").addEventListener("submit", async function (e) 
     let fullName = fname + " " + lname;
 
     try {
-        const response = await fetch("https://web-project-production-5d78.up.railway.app/api/register", {
+        const response = await fetch("http://localhost:3000/api/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: fullName, email: email, password: password })
