@@ -12,7 +12,6 @@ router.post("/confirm", async (req, res) => {
 
         if (!email || !tickets || !bookingId || !event) {
             console.log("Missing booking information");
-
             return res.status(400).json({
                 message: "Missing booking information"
             });
@@ -57,7 +56,11 @@ router.post("/confirm", async (req, res) => {
 
                     <h3>Your Entry QR Code</h3>
 
-                    <img src="${qrImage}" alt="Booking QR Code" />
+                    <p>
+                        <a href="${qrImage}" target="_blank">
+                            Click here to view your QR code
+                        </a>
+                    </p>
 
                     <p>Please show this QR code at the event entrance.</p>
 

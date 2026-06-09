@@ -3,25 +3,12 @@ const EventModel = require("../models/EventModel");
 exports.getEvents = async (req,res)=>{
 
 try{
-    const page= Number(
-req.query.page)||1;
-
-const limit=5;
-
-const events=
-await EventModel.find()
-.sort({date:1})
-.skip((page-1)*limit)
-.limit(limit);
-
-
-
+const events = await EventModel.find();
 res.json(events);
 
 }
 
 catch(err){
-
 res.status(500).json({
 message:err.message
 });

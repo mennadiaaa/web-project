@@ -1,8 +1,9 @@
 //deleted storage key constant as we are now using the backend instead of localStorage
 
-const API="http://localhost:3000/api/admin/events";
-const USERS_API="http://localhost:3000/api/admin/users";
+const BASE_URL = window.location.origin;
 
+const API = `${BASE_URL}/api/admin/events`;
+const USERS_API = `${BASE_URL}/api/admin/users`;
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80";
 
@@ -238,8 +239,7 @@ async function renderEvents() {
     .map(
       (event) => `
       <div class="event-item">
-        <img src="${event.image?`http://localhost:3000${event.image}`:DEFAULT_IMAGE}" alt="${escapeHtml(event.title)}">
-        
+      <img src="${getImageSrc(event.image)}" alt="${escapeHtml(event.title)}">        
         <div>
           <div class="badge">${escapeHtml(event.category)}</div>
 
@@ -277,8 +277,7 @@ async function editEvent(id) {
   locationInput.value = event.location;
   priceInput.value = event.price;
   descriptionInput.value = event.description;
-  imagePreview.src = event.image?"http://localhost:3000"+event.image:"";
-
+  imagePreview.src = getImageSrc(event.image);
   formTitle.textContent = "Edit Event";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -336,6 +335,18 @@ function showToast(message) {
   showToast.timer = setTimeout(() => {
     toast.style.display = "none";
   }, 2500);
+}
+
+function getImageSrc(image) {
+  if (!image) {
+    return DEFAULT_IMAGE;
+  }
+
+  if (image.startsWith("http")) {
+    return image;
+  }
+
+  return `${BASE_URL}${image}`;
 }
 
 function escapeHtml(text) {
